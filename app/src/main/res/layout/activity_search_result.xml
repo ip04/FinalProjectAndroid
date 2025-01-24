@@ -88,7 +88,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
-                    android:id="@+id/detail_movie_starsTV"
+                    android:id="@+id/search_movie_starsTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/star"
@@ -100,7 +100,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/detail_movie_timeTV"
+                    android:id="@+id/search_movie_yearTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -109,12 +109,12 @@
                     android:text="0"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/detail_movie_starsTV"
+                    app:layout_constraintStart_toEndOf="@+id/search_movie_starsTV"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/detail_movie_nameTV"
+                android:id="@+id/search_movie_nameTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text="Summary"
+                android:text="Country"
                 android:textColor="@color/yellow"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -159,36 +159,6 @@
                 app:layout_constraintStart_toStartOf="@+id/textView7"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Actors"
-                android:textColor="@color/yellow"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/search_movie_countryTV"
-                app:layout_constraintTop_toBottomOf="@+id/search_movie_countryTV" />
-
-            <TextView
-                android:id="@+id/detail_movie_actorsTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="test"
-                android:textColor="@color/white"
-                app:layout_constraintStart_toStartOf="@+id/textView8"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/detail_imagesRecycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detail_movie_actorsTV" />
-
             <ProgressBar
                 android:id="@+id/search_pogressBar"
                 style="?android:attr/progressBarStyle"
@@ -201,5 +171,7 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.core.widget.NestedScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -28,8 +29,10 @@ import com.example.gaminghubapp.R;
 import com.example.gaminghubapp.adapters.CategoryListAdapter;
 import com.example.gaminghubapp.adapters.GameListAdapter;
 import com.example.gaminghubapp.adapters.SliderAdapters;
+import com.example.gaminghubapp.domain.Datum;
 import com.example.gaminghubapp.domain.GenresItem;
 import com.example.gaminghubapp.domain.ListGame;
+import com.example.gaminghubapp.domain.SearchItemDetail;
 import com.example.gaminghubapp.domain.SliderItems;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -83,17 +86,22 @@ public class MainActivity extends AppCompatActivity {
 
         StringRequest searchRequest = new StringRequest(Request.Method.GET, url, response -> {
             Gson gson = new Gson();
-            ListGame searchResults = gson.fromJson(response, ListGame.class);
-            openSearchResultsActivity(searchResults);
+            SearchItemDetail searchResults = gson.fromJson(response, SearchItemDetail.class);
+            if (searchResults.getData() != null && !searchResults.getData().isEmpty()) {
+                // Take the first result
+                Datum datum = searchResults.getData().get(0); // נניח שאתה משתמש בתוצאה הראשונה
+                String json = new Gson().toJson(datum);
+
+                Intent intent = new Intent(this, SearchResultActivity.class);
+                intent.putExtra("datum", json);
+                startActivity(intent);
+            } else {
+                Log.i("TAG", "No results found for query: " + query);
+                Toast.makeText(this, "No results found for query: " + query, Toast.LENGTH_SHORT).show();
+            }
         }, error -> Log.i("TAG", "onErrorResponse: " + error.toString()));
 
         mRequestQueue.add(searchRequest);
-    }
-
-    private void openSearchResultsActivity(ListGame searchResults) {
-        Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra("searchResults", new Gson().toJson(searchResults));
-        startActivity(intent);
     }
 
     private void sendRequestBestGames() {

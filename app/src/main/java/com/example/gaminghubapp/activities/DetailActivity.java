@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,20 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.gaminghubapp.R;
 import com.example.gaminghubapp.adapters.ActorListAdapter;
 import com.example.gaminghubapp.adapters.CategoryEachFilmListAdapter;
-import com.example.gaminghubapp.domain.Datum;
 import com.example.gaminghubapp.domain.FilmItem;
-import com.example.gaminghubapp.domain.SearchItemDetail;
 import com.google.gson.Gson;
-
-import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
     private RequestQueue mRequestQueue;
@@ -56,9 +49,10 @@ public class DetailActivity extends AppCompatActivity {
             return insets;
         });
 
+        initView();
+
         idFilm = getIntent().getIntExtra("id", 0);
         filmName = getIntent().getStringExtra("searchResults");
-        initView();
         sendRequest();
     }
 
@@ -98,15 +92,17 @@ public class DetailActivity extends AppCompatActivity {
 
 
 
+
+
     private void initView() {
-        progressBar = findViewById(R.id.detail_pogressBar);
-        scrollView = findViewById(R.id.detail_scrollView);
+        progressBar = findViewById(R.id.search_pogressBar);
+        scrollView = findViewById(R.id.search_scrollView);
         titleTV = findViewById(R.id.detail_movie_nameTV);
         movieRateTV = findViewById(R.id.detail_movie_starsTV);
         movieTimeTV = findViewById(R.id.detail_movie_timeTV);
         movieActorsInfoTV = findViewById(R.id.detail_movie_actorsTV);
-        movieSummaryTV = findViewById(R.id.detail_movie_summaryTV);
-        detailPictureIV = findViewById(R.id.detail_movie_picIV);
+        movieSummaryTV = findViewById(R.id.search_movie_countryTV);
+        detailPictureIV = findViewById(R.id.search_movie_picIV);
         backBtnIV = findViewById(R.id.backBtnIV);
         favBtnIV = findViewById(R.id.favBtnIV);
         recyclerViewCategory = findViewById(R.id.genreView);
