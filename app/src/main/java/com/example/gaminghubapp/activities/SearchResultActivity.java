@@ -2,8 +2,8 @@ package com.example.gaminghubapp.activities;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -13,9 +13,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.gaminghubapp.R;
+import com.example.gaminghubapp.adapters.CategoryEachFilmListAdapter;
 import com.example.gaminghubapp.domain.Datum;
 import com.google.gson.Gson;
 
@@ -23,8 +26,12 @@ public class SearchResultActivity extends AppCompatActivity {
 
     private ImageView posterIV;
     private TextView titleTV, imdbRatingTV, yearTV, countryTV;
+    private ImageView backBtn, favBtn;
     private ProgressBar progressBar;
     private NestedScrollView scrollView;
+    private RecyclerView recyclerViewCategory;
+    private RecyclerView.Adapter adapterCategory;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,7 @@ public class SearchResultActivity extends AppCompatActivity {
             Datum datum = new Gson().fromJson(json, Datum.class);
             displayData(datum);
         }
+        backBtn.setOnClickListener(v -> finish());
     }
 
     private void initView() {
@@ -52,20 +60,25 @@ public class SearchResultActivity extends AppCompatActivity {
         countryTV = findViewById(R.id.search_movie_countryTV);
         progressBar = findViewById(R.id.search_pogressBar);
         scrollView = findViewById(R.id.search_scrollView);
-//        genresTV = findViewById(R.id.genreView);
+        backBtn = findViewById(R.id.backBtnIV);
+        recyclerViewCategory = findViewById(R.id.search_genreView);
+        recyclerViewCategory.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+//        genresTV = findViewById(R.id.search_genreView);
     }
 
 
     private void displayData(Datum datum) {
         // הצגת נתונים ב-UI
-//        progressBar.setVisibility(View.VISIBLE);
-//        scrollView.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
         scrollView.setVisibility(View.VISIBLE);
         titleTV.setText(datum.getTitle());
         imdbRatingTV.setText("IMDB Rating: " + datum.getImdbRating());
         yearTV.setText("Year: " + datum.getYear());
         countryTV.setText("Country: " + datum.getCountry());
+        if (datum.getGenres() != null){
+            adapterCategory = new CategoryEachFilmListAdapter(datum.getGenres());
+            recyclerViewCategory.setAdapter(adapterCategory);
+        }
 //        genresTV.setText("Genres: " + String.join(", ", datum.getGenres()));
 
         // הצגת תמונת הפוסטר

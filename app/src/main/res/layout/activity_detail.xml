@@ -126,7 +126,7 @@
                 app:layout_constraintStart_toStartOf="@+id/constraintLayout4" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/genreView"
+                android:id="@+id/search_genreView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingStart="8dp"
@@ -144,7 +144,7 @@
                 android:textColor="@color/yellow"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/genreView" />
+                app:layout_constraintTop_toBottomOf="@+id/search_genreView" />
 
             <TextView
                 android:id="@+id/search_movie_countryTV"

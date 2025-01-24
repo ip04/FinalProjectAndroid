@@ -105,7 +105,7 @@ public class DetailActivity extends AppCompatActivity {
         detailPictureIV = findViewById(R.id.search_movie_picIV);
         backBtnIV = findViewById(R.id.backBtnIV);
         favBtnIV = findViewById(R.id.favBtnIV);
-        recyclerViewCategory = findViewById(R.id.genreView);
+        recyclerViewCategory = findViewById(R.id.search_genreView);
         recyclerViewActors = findViewById(R.id.detail_imagesRecycler);
         recyclerViewActors.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
         recyclerViewCategory.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
