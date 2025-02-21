@@ -57,7 +57,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Favorite Game"
+                    android:text="Favorite Movie"
                     android:textColor="@color/orange"
                     android:textSize="27sp"/>
 
