@@ -27,11 +27,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.gaminghubapp.R;
 import com.example.gaminghubapp.adapters.CategoryListAdapter;
-import com.example.gaminghubapp.adapters.GameListAdapter;
+import com.example.gaminghubapp.adapters.MovieListAdapter;
 import com.example.gaminghubapp.adapters.SliderAdapters;
 import com.example.gaminghubapp.domain.Datum;
 import com.example.gaminghubapp.domain.GenresItem;
-import com.example.gaminghubapp.domain.ListGame;
+import com.example.gaminghubapp.domain.ListMovie;
 import com.example.gaminghubapp.domain.SearchItemDetail;
 import com.example.gaminghubapp.domain.SliderItems;
 import com.google.gson.Gson;
@@ -42,8 +42,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private EditText searchBoxET;
-    private RecyclerView.Adapter adapterBestGames, adapterUpComing, adapterCategory;
-    private RecyclerView recyclerViewBestGames, recyclerViewUpComing, recyclerViewCategory;
+    private RecyclerView.Adapter adapterBestMovies, adapterUpComing, adapterCategory;
+    private RecyclerView recyclerViewBestMovies, recyclerViewUpComing, recyclerViewCategory;
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest, mStringRequest2, mStringRequest3;
     private ProgressBar loading1, loading2, loading3;
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         initView();
         banners();
-        sendRequestBestGames();
+        sendRequestBestMovies();
         sendRequestUpComing();
         sendRequestCategory();
         setupSearchBox();
@@ -104,15 +104,15 @@ public class MainActivity extends AppCompatActivity {
         mRequestQueue.add(searchRequest);
     }
 
-    private void sendRequestBestGames() {
+    private void sendRequestBestMovies() {
         mRequestQueue = Volley.newRequestQueue(this);
         loading1.setVisibility(View.VISIBLE);
         mStringRequest = new StringRequest(Request.Method.GET, "https://moviesapi.ir/api/v1/movies?page=1", response -> {
             Gson gson = new Gson();
             loading1.setVisibility(View.GONE);
-            ListGame items = gson.fromJson(response, ListGame.class);
-            adapterBestGames = new GameListAdapter(items);
-            recyclerViewBestGames.setAdapter(adapterBestGames);
+            ListMovie items = gson.fromJson(response, ListMovie.class);
+            adapterBestMovies = new MovieListAdapter(items);
+            recyclerViewBestMovies.setAdapter(adapterBestMovies);
         }, error -> {
                 loading1.setVisibility(View.GONE);
                 Log.i("TAG", "onErrorResponse: "+error.toString());
@@ -126,8 +126,8 @@ public class MainActivity extends AppCompatActivity {
         mStringRequest3 = new StringRequest(Request.Method.GET, "https://moviesapi.ir/api/v1/movies?page=2", response -> {
             Gson gson = new Gson();
             loading3.setVisibility(View.GONE);
-            ListGame items = gson.fromJson(response, ListGame.class);
-            adapterUpComing = new GameListAdapter(items);
+            ListMovie items = gson.fromJson(response, ListMovie.class);
+            adapterUpComing = new MovieListAdapter(items);
             recyclerViewUpComing.setAdapter(adapterUpComing);
         }, error -> {
                 loading3.setVisibility(View.GONE);
@@ -211,8 +211,8 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         searchBoxET = findViewById(R.id.et_searchBox);
         viewPager2 = findViewById(R.id.viewpagerSlider);
-        recyclerViewBestGames = findViewById(R.id.view1);
-        recyclerViewBestGames.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewBestMovies = findViewById(R.id.view1);
+        recyclerViewBestMovies.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
         recyclerViewUpComing = findViewById(R.id.view3);
         recyclerViewUpComing.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
         recyclerViewCategory = findViewById(R.id.view2);

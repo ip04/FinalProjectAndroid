@@ -56,14 +56,18 @@ public class SliderAdapters extends RecyclerView.Adapter<SliderAdapters.SliderVi
 
     public class SliderViewHolder extends RecyclerView.ViewHolder{
         private ImageView imageView;
+
         public SliderViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageSlide);
         }
+
         void setImage(SliderItems sliderItems){
             RequestOptions requestOptions = new RequestOptions();
             requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(60));
-            Glide.with(context).load(sliderItems.getImage()).apply(requestOptions).into(imageView);
+            Glide.with(context)
+                    .load(sliderItems.getImage())
+                    .apply(requestOptions).into(imageView);
         }
     }
 

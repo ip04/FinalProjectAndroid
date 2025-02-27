@@ -2,7 +2,6 @@ package com.example.gaminghubapp.activities;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -63,12 +62,11 @@ public class SearchResultActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.backBtnIV);
         recyclerViewCategory = findViewById(R.id.search_genreView);
         recyclerViewCategory.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
-//        genresTV = findViewById(R.id.search_genreView);
+
     }
 
 
     private void displayData(Datum datum) {
-        // הצגת נתונים ב-UI
         progressBar.setVisibility(View.GONE);
         scrollView.setVisibility(View.VISIBLE);
         titleTV.setText(datum.getTitle());
@@ -79,9 +77,8 @@ public class SearchResultActivity extends AppCompatActivity {
             adapterCategory = new CategoryEachFilmListAdapter(datum.getGenres());
             recyclerViewCategory.setAdapter(adapterCategory);
         }
-//        genresTV.setText("Genres: " + String.join(", ", datum.getGenres()));
-
-        // הצגת תמונת הפוסטר
-        Glide.with(this).load(datum.getPoster()).into(posterIV);
+        Glide.with(this)
+                .load(datum.getPoster())
+                .into(posterIV);
     }
 }

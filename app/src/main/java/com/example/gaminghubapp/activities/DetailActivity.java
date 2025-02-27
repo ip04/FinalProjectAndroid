@@ -36,7 +36,6 @@ public class DetailActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapterActorList, adapterCategory;
     private NestedScrollView scrollView;
     private int idFilm;
-    private String filmName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,6 @@ public class DetailActivity extends AppCompatActivity {
         initView();
 
         idFilm = getIntent().getIntExtra("id", 0);
-        filmName = getIntent().getStringExtra("searchResults");
         sendRequest();
     }
 
@@ -109,7 +107,6 @@ public class DetailActivity extends AppCompatActivity {
         recyclerViewActors = findViewById(R.id.detail_imagesRecycler);
         recyclerViewActors.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
         recyclerViewCategory.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
-
         backBtnIV.setOnClickListener(v -> finish());
     }
 }

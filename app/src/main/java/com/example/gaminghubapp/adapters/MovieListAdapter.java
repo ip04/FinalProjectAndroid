@@ -17,26 +17,26 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.gaminghubapp.R;
 import com.example.gaminghubapp.activities.DetailActivity;
-import com.example.gaminghubapp.domain.ListGame;
+import com.example.gaminghubapp.domain.ListMovie;
 
-public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.ViewHolder> {
-    ListGame items;
+public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.ViewHolder> {
+    ListMovie items;
     Context context;
 
-    public GameListAdapter(ListGame items) {
+    public MovieListAdapter(ListMovie items) {
         this.items = items;
     }
 
     @NonNull
     @Override
-    public GameListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MovieListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_game, parent, false);
         return new ViewHolder(inflate);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GameListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MovieListAdapter.ViewHolder holder, int position) {
         holder.titleTV.setText(items.getData().get(position).getTitle());
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
